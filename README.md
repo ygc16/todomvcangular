@@ -11,6 +11,6 @@ gradle clean build
 or 
 ./gradlew clean build
 
-CHELENGES:
-All tests are running in Chrome browser. But 2 tests that requires to use Action failed in FireFox browser to invoke .perform() method.
-I tried to provide additional geckodriver, however it has not resolved the issue. I googled it and found that there was a bug in driver which was fixed in the past. My next step would be to download geckodriver for windows and run it. I believe it should run, however I do not have windows machine at the moment. Therefore, I leave it as is. 
+CHALLENGES:
+All tests are running in Chrome browser in MAC. But 2 tests that requires to use Action failed in FireFox browser to invoke .perform() method.
+I tried to provide additional geckodriver, however it did not resolve the issue. My next step would be to download geckodriver for windows and try to run it in windows. I think it may be driver problem and in windows it will run, however I do not have windows machine at the moment. Therefore, I leave it as is.
