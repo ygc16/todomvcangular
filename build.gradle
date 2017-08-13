@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'com.commercehub.cucumber-jvm' version '0.7'
+}
+
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'info.cukes', name: 'cucumber-java', version: '1.2.5'
+    testCompile group: 'info.cukes', name: 'cucumber-junit', version: '1.2.5'
+    compile group: 'info.cukes', name: 'cucumber-core', version: '1.2.5'
+
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.4.0'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-api', version: '3.4.0'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '3.4.0'
+
+}
+
+
+addCucumberSuite 'cucumberTest'
+
+cucumberTest {
+    stepDefinitionRoots = ['cucumber.steps', 'cucumber.hooks']
+}
+
+sourceSets {
+    main {
+        output.resourcesDir = 'out/res'
+    }
+}
