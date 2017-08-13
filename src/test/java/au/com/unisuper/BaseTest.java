@@ -11,6 +11,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class BaseTest {
 
+//    public final String BROWSER_NAME = "FireFox";
+    public final String BROWSER_NAME = "Chrome";
+
     protected static WebDriver driver = null;
     protected static WebDriverWait wait = null;
 

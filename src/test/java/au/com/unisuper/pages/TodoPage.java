@@ -25,11 +25,13 @@ public class TodoPage  extends BasePage{
     public void updateToDo(String textBefore, String textAfter) throws Exception{
         WebElement toDoElem = getToDoByText( textBefore );
 
-        Actions action = new Actions(driver).doubleClick(toDoElem);
-        action.moveToElement(toDoElem).doubleClick().perform();
-
-        toDoElem.sendKeys(textAfter);
-        toDoElem.sendKeys(Keys.RETURN);
+        Actions action = new Actions(driver);
+        action.moveToElement(toDoElem).perform();
+        action.doubleClick().perform();
+        WebElement toDoElemUpd = driver.findElement(By.xpath("//input[@ ng-model='todo.title']"));
+        toDoElemUpd.clear();
+        toDoElemUpd.sendKeys(textAfter);
+        toDoElemUpd.sendKeys(Keys.RETURN);
     }
 
     public String getToDoText( int num){
@@ -75,7 +77,8 @@ public class TodoPage  extends BasePage{
     public void deleteTodoItem(int num){
         WebElement toDoElem = wait.until( ExpectedConditions.elementToBeClickable( By.xpath("//*[@id='todo-list']/li["+num+"]") ) );
         Actions action = new Actions(driver);
-        action.moveToElement(toDoElem).moveToElement( toDoElem.findElement( By.xpath("//div/button" )  ) ).click().perform();
+        action.moveToElement(toDoElem).perform();
+        driver.findElement(By.xpath("//*[@id='todo-list']/li["+num+"]/div/button")).click();
     }
 
     public void deleteAllCompletedItems(){

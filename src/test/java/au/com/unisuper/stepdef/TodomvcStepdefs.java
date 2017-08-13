@@ -11,10 +11,12 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import static org.junit.Assert.*;
 
 /**
@@ -28,7 +30,15 @@ public class TodomvcStepdefs extends BaseTest {
     @Before
     public void beforeTest() {
 
-        driver = new FirefoxDriver();
+
+        if (BROWSER_NAME.equals("Chrome")) {
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver 4");
+            driver = new ChromeDriver();
+        } else {
+            driver = new FirefoxDriver();
+        }
+
+
         wait = new WebDriverWait(driver, 15);
     }
 
@@ -51,7 +61,7 @@ public class TodomvcStepdefs extends BaseTest {
     public void iAmOnAngularJSPage() throws Throwable {
         String expectedTitle = "AngularJS • TodoMVC";
         wait.until(ExpectedConditions.titleContains("AngularJS • TodoMVC"));
-        assertEquals( "Page Title", driver.getTitle(), expectedTitle );
+        assertEquals("Page Title", driver.getTitle(), expectedTitle);
     }
 
     @Given("^I navigate to AngularJS page$")
@@ -66,7 +76,7 @@ public class TodomvcStepdefs extends BaseTest {
 
     @Then("^Item (.*) is added. Seq:([0-9]+)$")
     public void itemIsAdded(String item, int num) throws Throwable {
-        assertEquals ( "Item is not added", item, todoP.getToDoText(num) );
+        assertEquals("Item is not added", item, todoP.getToDoText(num));
     }
 
     @When("^update the content of (.*) To-do item to (.*)$")
@@ -76,7 +86,7 @@ public class TodomvcStepdefs extends BaseTest {
 
     @Then("^Todo item (\\d+) has value (.*)$")
     public void todoItemHasValue(int num, String text) throws Throwable {
-        assertEquals( "Todo text is wrong", text, todoP.getToDoText(num) );
+        assertEquals("Todo text is wrong", text, todoP.getToDoText(num));
     }
 
 
@@ -107,7 +117,7 @@ public class TodomvcStepdefs extends BaseTest {
 
     @Then("^Todo (.*) is presented on the screen$")
     public void todoItemPresentedOnTheScreen(String text) throws Throwable {
-        assertTrue( "The Item should be presented on the screen, but it is not", todoP.isPresented(text));
+        assertTrue("The Item should be presented on the screen, but it is not", todoP.isPresented(text));
     }
 
     @Then("^Todo (.*) is not presented on the screen$")

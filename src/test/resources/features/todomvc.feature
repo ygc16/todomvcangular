@@ -10,12 +10,12 @@ Feature: Test todomvc.com
     When I add a To-do item First Item
     Then Item First Item is added. Seq:1
 
-#  Scenario: 2. I want to edit the content of an existing To-do item
-#    Given I navigate to AngularJS page
-#    When I add a To-do item First Item
-#    Then Item First Item is added. Seq:1
-#    When update the content of First Item To-do item to First Item Changed
-#    Then Todo item 1 has value First Item Changed
+  Scenario: 2. I want to edit the content of an existing To-do item
+    Given I navigate to AngularJS page
+    When I add a To-do item First Item
+    Then Item First Item is added. Seq:1
+    When update the content of First Item To-do item to First Item Changed
+    Then Todo item 1 has value First Item Changed
 
 
   Scenario: 3. I can complete a To-do by clicking inside the circle UI to the left of the To-do
@@ -60,13 +60,13 @@ Feature: Test todomvc.com
     Then Todo First Item is presented on the screen
     Then Todo Second Item is not presented on the screen
 
-#  Scenario: 8. I can clear a single To-do item from the list completely by clicking the Close icon.
-#    Given I navigate to AngularJS page
-#    When I add a To-do item First Item
-#    And I add a To-do item Second Item
-#    And I click remove item 1
-#    Then Todo First Item is not presented on the screen
-#    Then Todo Second Item is presented on the screen
+  Scenario: 8. I can clear a single To-do item from the list completely by clicking the Close icon.
+    Given I navigate to AngularJS page
+    When I add a To-do item First Item
+    And I add a To-do item Second Item
+    And I click remove item 1
+    Then Todo First Item is not presented on the screen
+    Then Todo Second Item is presented on the screen
 
 
   Scenario: 9. I can clear all completed To-do items from the list completely
