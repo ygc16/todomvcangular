@@ -1,6 +1,7 @@
 package au.com.unisuper.pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
@@ -21,7 +22,15 @@ public class TodoPage  extends BasePage{
         toDoElem.sendKeys(Keys.RETURN);
     }
 
+    public void updateToDo(String textBefore, String textAfter) throws Exception{
+        WebElement toDoElem = getToDoByText( textBefore );
 
+        Actions action = new Actions(driver).doubleClick(toDoElem);
+        action.moveToElement(toDoElem).doubleClick().perform();
+
+        toDoElem.sendKeys(textAfter);
+        toDoElem.sendKeys(Keys.RETURN);
+    }
 
     public String getToDoText( int num){
         WebElement toDoElem = wait.until( ExpectedConditions.visibilityOfElementLocated( By.xpath("//*[@id='todo-list']/li["+num+"]/div/label") ) );
@@ -46,7 +55,6 @@ public class TodoPage  extends BasePage{
 
     public boolean isDone(int num){
         WebElement toDoElem = wait.until( ExpectedConditions.elementToBeClickable( By.xpath("//*[@id='todo-list']/li["+num+"]") ) );
-//        String elemClass = toDoElem.getAttribute("class")
         return toDoElem.getAttribute("class").equals( "ng-scope completed" );
     }
 
@@ -62,6 +70,12 @@ public class TodoPage  extends BasePage{
             return false;
         }
         return true;
+    }
+
+    public void deleteTodoItem(int num){
+        WebElement toDoElem = wait.until( ExpectedConditions.elementToBeClickable( By.xpath("//*[@id='todo-list']/li["+num+"]") ) );
+        Actions action = new Actions(driver);
+        action.moveToElement(toDoElem).moveToElement( toDoElem.findElement( By.xpath("//div/button" )  ) ).click().perform();
     }
 
     public void deleteAllCompletedItems(){

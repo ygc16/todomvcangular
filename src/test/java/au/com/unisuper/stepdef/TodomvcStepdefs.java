@@ -69,10 +69,10 @@ public class TodomvcStepdefs extends BaseTest {
         assertEquals ( "Item is not added", item, todoP.getToDoText(num) );
     }
 
-//    @When("^update the content of (.*) To-do item to (.*)$")
-//    public void editTheContentOfAnExistingToDoItem(String textBefore, String textAfter) throws Throwable {
-//        todoP.updateToDoTest(textBefore, textAfter);
-//    }
+    @When("^update the content of (.*) To-do item to (.*)$")
+    public void editTheContentOfAnExistingToDoItem(String textBefore, String textAfter) throws Throwable {
+        todoP.updateToDo(textBefore, textAfter);
+    }
 
     @Then("^Todo item (\\d+) has value (.*)$")
     public void todoItemHasValue(int num, String text) throws Throwable {
@@ -115,10 +115,10 @@ public class TodomvcStepdefs extends BaseTest {
         assertFalse("The Item should not be presented on the screen, but it is", todoP.isPresented(text));
     }
 
-//    @And("^I click remove item (\\d+)$")
-//    public void iClickCloseItem(int num) throws Throwable {
-//        todoP.deleteTodoItem(num);
-//    }
+    @And("^I click remove item (\\d+)$")
+    public void iClickCloseItem(int num) throws Throwable {
+        todoP.deleteTodoItem(num);
+    }
 
     @And("^I click Clear All Completed Button$")
     public void iClickClearAllCompletedButton() throws Throwable {
